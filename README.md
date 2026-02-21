@@ -19,7 +19,7 @@ Modern professional portfolio website built with Next.js App Router, TypeScript,
 ├── components/
 │   └── portfolio-data.ts
 ├── public/
-├── next.config.mjs
+├── next.config.ts
 ├── tailwind.config.ts
 ├── tsconfig.json
 └── package.json

@@ -4,25 +4,31 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://your-vercel-url.vercel.app";
-
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
   title: "Aadi Gautam Sharma | Data Science Portfolio",
   description:
-    "Data Science graduate student focused on machine learning, ETL systems, and analytics engineering.",
+    "Portfolio of Aadi Gautam Sharma, a data science graduate student focused on ETL pipelines, predictive modeling, and production analytics systems.",
+  keywords: [
+    "Aadi Gautam Sharma",
+    "Data Science",
+    "Machine Learning",
+    "ETL",
+    "Portfolio",
+  ],
+  authors: [{ name: "Aadi Gautam Sharma" }],
   openGraph: {
     title: "Aadi Gautam Sharma | Data Science Portfolio",
     description:
-      "Data Science • ML • Data Engineering — projects, experience, and technical skills.",
-    url: siteUrl,
+      "Data Science graduate student with hands-on experience in ETL pipelines, predictive modeling, and automation engineering.",
+    url: "https://example.com",
     siteName: "Aadi Gautam Sharma Portfolio",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Aadi Gautam Sharma | Data Science Portfolio",
-    description: "Data Science • ML • Data Engineering",
+    description:
+      "Data Science | ML | ETL | Automation — Portfolio and project highlights.",
   },
 };
 

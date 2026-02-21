@@ -1,177 +1,152 @@
-import { ArrowUpRight, Download, Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { portfolioData } from "@/components/portfolio-data";
-import { Reveal } from "@/components/reveal";
 
-const navLinks = [
-  { href: "#projects", label: "Projects" },
-  { href: "#experience", label: "Experience" },
-  { href: "#skills", label: "Skills" },
-  { href: "#contact", label: "Contact" },
-];
+const stagger = ["0ms", "100ms", "200ms", "300ms", "400ms", "500ms"];
 
 export default function Home() {
   return (
-    <main>
-      <header className="sticky top-0 z-50 border-b border-[#23232D] bg-[#0B0B10]/95 backdrop-blur">
-        <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-6">
-          <p className="text-sm font-semibold tracking-wide">Aadi Gautam Sharma</p>
-          <ul className="hidden items-center gap-6 md:flex">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a className="nav-link" href={link.href}>
-                  {link.label}
-                </a>
-              </li>
+    <main className="pb-10">
+      <section className="section-shell pt-24 md:pt-32">
+        <p className="animate-fade-in-up text-sm font-medium uppercase tracking-[0.2em] text-accent">
+          {portfolioData.location}
+        </p>
+        <h1
+          className="animate-fade-in-up mt-4 text-4xl font-bold tracking-tight md:text-6xl"
+          style={{ animationDelay: stagger[1] }}
+        >
+          {portfolioData.name}
+        </h1>
+        <p
+          className="animate-fade-in-up mt-4 text-lg text-slate-700 md:text-xl"
+          style={{ animationDelay: stagger[2] }}
+        >
+          {portfolioData.tagline}
+        </p>
+        <div
+          className="animate-fade-in-up mt-8 flex flex-wrap gap-3"
+          style={{ animationDelay: stagger[3] }}
+        >
+          <a
+            href={portfolioData.linkedin}
+            className="rounded-full border border-slate-300 px-5 py-2.5 text-sm font-medium text-slate-800 transition hover:border-accent hover:text-accent"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn
+          </a>
+          <a
+            href={portfolioData.github}
+            className="rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition hover:bg-blue-700"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>
+        </div>
+      </section>
+
+      <section className="section-shell animate-fade-in-up" style={{ animationDelay: stagger[1] }}>
+        <h2 className="section-heading">About</h2>
+        <p className="section-subheading">{portfolioData.about}</p>
+        <ul className="mt-6 grid gap-2 text-sm text-slate-700 md:text-base">
+          {portfolioData.education.map((item) => (
+            <li key={item} className="card py-4">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="section-shell animate-fade-in-up" style={{ animationDelay: stagger[2] }}>
+        <h2 className="section-heading">Featured Project</h2>
+        <p className="section-subheading">
+          High-impact analytics project focused on scalable data processing and predictive insights.
+        </p>
+        <article className="card mt-8 border-accent/20 bg-accent/5">
+          <p className="text-sm font-medium text-accent">{portfolioData.project.org}</p>
+          <h3 className="mt-2 text-xl font-semibold">{portfolioData.project.title}</h3>
+          <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-700 md:text-base">
+            {portfolioData.project.points.map((point) => (
+              <li key={point}>• {point}</li>
             ))}
           </ul>
-        </nav>
-      </header>
-
-      <section className="section-shell pt-20 md:pt-28">
-        <Reveal>
-          <p className="muted text-sm uppercase tracking-[0.2em]">{portfolioData.location}</p>
-          <h1 className="mt-4 text-4xl font-semibold tracking-tight md:text-7xl">{portfolioData.name}</h1>
-          <p className="mt-5 text-lg md:text-2xl">{portfolioData.tagline}</p>
-          <p className="muted mt-4 max-w-3xl text-sm leading-7 md:text-base">{portfolioData.credibility}</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#projects" className="btn-primary">
-              View Projects
-            </a>
-            <a href="/Aadi_Gautam_Sharma_Resume.pdf" className="btn-secondary" target="_blank" rel="noreferrer">
-              Download Resume <Download className="ml-2 h-4 w-4" />
-            </a>
-          </div>
-        </Reveal>
+        </article>
       </section>
 
-      <section id="projects" className="section-shell pt-6">
-        <Reveal>
-          <h2 className="text-2xl font-semibold md:text-3xl">Featured Project</h2>
-          <article className="card project-card mt-8 p-7 md:p-9">
-            <p className="muted text-sm">{portfolioData.featuredProject.org}</p>
-            <h3 className="mt-2 text-2xl font-semibold">{portfolioData.featuredProject.title}</h3>
-            <p className="muted mt-4 max-w-3xl text-sm leading-7 md:text-base">{portfolioData.featuredProject.description}</p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {portfolioData.featuredProject.metrics.map((metric) => (
-                <span key={metric} className="tech-chip">
-                  {metric}
-                </span>
-              ))}
-            </div>
-            <ul className="muted mt-5 space-y-2 text-sm leading-6">
-              {portfolioData.featuredProject.points.map((point) => (
-                <li key={point}>• {point}</li>
-              ))}
-            </ul>
-            <a
-              href={portfolioData.featuredProject.github}
-              target="_blank"
-              rel="noreferrer"
-              className="mt-6 inline-flex items-center text-sm text-[#F5F5F7] hover:text-[#FF2A2A]"
-            >
-              View code <ArrowUpRight className="ml-1 h-4 w-4" />
-            </a>
-          </article>
-        </Reveal>
-
-        <Reveal className="mt-16">
-          <h2 className="text-2xl font-semibold md:text-3xl">Projects</h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            {portfolioData.projects.map((project) => (
-              <article key={project.title} className="card project-card p-6">
-                <h3 className="text-lg font-semibold">{project.title}</h3>
-                <p className="muted mt-3 text-sm leading-6">{project.summary}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.metrics.map((metric) => (
-                    <span key={metric} className="tech-chip">
-                      {metric}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.stack.map((item) => (
-                    <span key={item} className="rounded-full border border-[#23232D] px-3 py-1 text-xs text-zinc-400">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-5 flex gap-4 text-sm">
-                  <a href={project.github} target="_blank" rel="noreferrer" className="hover:text-[#FF2A2A]">
-                    GitHub
-                  </a>
-                  {project.caseStudy ? (
-                    <a href={project.caseStudy} className="hover:text-[#FF2A2A]">
-                      Case Study
-                    </a>
-                  ) : null}
-                </div>
-              </article>
-            ))}
-          </div>
-        </Reveal>
+      <section className="section-shell animate-fade-in-up" style={{ animationDelay: stagger[3] }}>
+        <h2 className="section-heading">Experience</h2>
+        <p className="section-subheading">Professional roles spanning analytics engineering and data systems.</p>
+        <div className="mt-10 space-y-8 border-l border-slate-200 pl-6">
+          {portfolioData.experience.map((job) => (
+            <article key={`${job.company}-${job.period}`} className="relative">
+              <span className="absolute -left-[31px] top-1.5 h-3.5 w-3.5 rounded-full border-2 border-white bg-accent" />
+              <p className="text-xs font-medium uppercase tracking-wide text-slate-500">{job.period}</p>
+              <h3 className="mt-1 text-lg font-semibold">
+                {job.role} · {job.company}
+              </h3>
+              <p className="text-sm text-slate-600">{job.location}</p>
+              <ul className="mt-3 space-y-1.5 text-sm leading-6 text-slate-700">
+                {job.points.map((point) => (
+                  <li key={point}>• {point}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
       </section>
 
-      <section id="experience" className="section-shell">
-        <Reveal>
-          <h2 className="text-2xl font-semibold md:text-3xl">Experience</h2>
-          <div className="mt-8 space-y-6 border-l border-[#23232D] pl-6">
-            {portfolioData.experience.map((job) => (
-              <article key={`${job.company}-${job.period}`} className="relative">
-                <span className="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full bg-[#E10600]" />
-                <p className="muted text-xs uppercase tracking-[0.15em]">{job.period}</p>
-                <h3 className="mt-1 text-lg font-semibold">
-                  {job.role} · {job.company}
-                </h3>
-                <ul className="muted mt-3 space-y-1.5 text-sm leading-6">
-                  {job.bullets.map((bullet) => (
-                    <li key={bullet}>• {bullet}</li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </Reveal>
+      <section className="section-shell animate-fade-in-up" style={{ animationDelay: stagger[4] }}>
+        <h2 className="section-heading">Technical Skills</h2>
+        <div className="mt-8 grid gap-5 md:grid-cols-2">
+          {Object.entries(portfolioData.skills).map(([group, items]) => (
+            <article key={group} className="card">
+              <h3 className="text-base font-semibold">{group}</h3>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {items.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-slate-300 px-3 py-1 text-xs font-medium text-slate-700"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
-      <section id="skills" className="section-shell">
-        <Reveal>
-          <h2 className="text-2xl font-semibold md:text-3xl">Skills</h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {Object.entries(portfolioData.skills).map(([group, values]) => (
-              <article key={group} className="card p-6">
-                <h3 className="text-base font-semibold">{group}</h3>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {values.map((value) => (
-                    <span key={value} className="tech-chip">
-                      {value}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </Reveal>
-      </section>
-
-      <section id="contact" className="section-shell pb-20">
-        <Reveal>
-          <h2 className="text-2xl font-semibold md:text-3xl">Contact</h2>
-          <p className="muted mt-3 text-sm leading-7">Open to data science, machine learning, and data engineering roles.</p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a href={`mailto:${portfolioData.email}`} className="btn-secondary">
-              <Mail className="mr-2 h-4 w-4" /> {portfolioData.email}
-            </a>
-            <a href={portfolioData.linkedin} target="_blank" rel="noreferrer" className="btn-secondary">
-              <Linkedin className="mr-2 h-4 w-4" /> LinkedIn
-            </a>
-            <a href={portfolioData.github} target="_blank" rel="noreferrer" className="btn-secondary">
-              <Github className="mr-2 h-4 w-4" /> GitHub
-            </a>
-          </div>
-          <footer className="muted mt-14 border-t border-[#23232D] pt-6 text-xs">
-            © {new Date().getFullYear()} Aadi Gautam Sharma. Built with Next.js + Tailwind CSS.
-          </footer>
-        </Reveal>
+      <section className="section-shell animate-fade-in-up" style={{ animationDelay: stagger[5] }}>
+        <h2 className="section-heading">Contact</h2>
+        <p className="section-subheading">Open to data science, analytics, and automation opportunities.</p>
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          <a href={`mailto:${portfolioData.email}`} className="card flex items-center gap-3 transition hover:border-accent">
+            <Mail className="h-4 w-4 text-accent" />
+            <span className="text-sm font-medium">{portfolioData.email}</span>
+          </a>
+          <a
+            href={portfolioData.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="card flex items-center gap-3 transition hover:border-accent"
+          >
+            <Linkedin className="h-4 w-4 text-accent" />
+            <span className="text-sm font-medium">LinkedIn Profile</span>
+          </a>
+          <a
+            href={portfolioData.github}
+            target="_blank"
+            rel="noreferrer"
+            className="card flex items-center gap-3 transition hover:border-accent"
+          >
+            <Github className="h-4 w-4 text-accent" />
+            <span className="text-sm font-medium">GitHub Projects</span>
+          </a>
+        </div>
+        <div className="mt-5 flex items-center gap-2 text-sm text-slate-500">
+          <MapPin className="h-4 w-4" />
+          <span>{portfolioData.location}</span>
+        </div>
       </section>
     </main>
   );

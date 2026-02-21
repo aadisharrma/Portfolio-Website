@@ -54,7 +54,7 @@ export const portfolioData = {
       stack: ["Python", "Pandas", "Statistics"],
       github: "https://github.com/aadisharrma",
     },
-  ] satisfies Project[],
+  ] as Project[],
   experience: [
     {
       company: "Seamless Automation",
